@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Lazy Loading demo</title>
+
+    <style type="text/css">
+        article{font-size: 18px;}
+        article p{font-weight:300;line-height: 1.6;}
+
+        .iframe-cont{position: relative;overflow: hidden;padding-top: 56.25%;}
+        .iframe-cont iframe{position: absolute;top: 0;left: 0;width: 100%;height: 100%;border: 0;}
+
+    </style>
+</head>
+<body>
+
+<header class="sticky-top">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <span class="logo badge badge-primary d-inline-block mr-2">R</span>
+            Lazy Loading demo
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#images">Images <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#srcset">srcset</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#iframe">iFrame</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<section class="py-3 py-lg-5">
+    <div class="container" style="max-width: 768px!important;">
+        <article>
+            <h1 class="font-weight-light mt-0">Lazy Loading Examples</h1>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati recusandae tenetur vel vero! Ad autem, exercitationem, ipsam ipsum minima, nulla optio quae quo recusandae rerum sed veniam! Eum molestias, totam!</p>
+        </article>
+        <article id="images">
+            <hr>
+            <h3 class="font-weight-light mt-0">Standard &lt;img&gt; lazy loading</h3>
+            <p>Mozilla Neil Postman bringing a tote bag to a knife fight open source nut graf mthomps dead trees Frontline, Fuego production of innocence Nook Ushahidi incent writing, 5 praise erasers & how to avoid them hyperhyperhyperlocal afternoon paper West Seattle Blog Fuego advertising. lede copyboy Steve Jobs syndicated tablets attracting young readers TweetDeck semipermeable the power of the press belongs to the person who owns one, media bias Storify hyperhyperhyperlocal newsroom cafe vast wasteland free as in beer open source tablets, learnings awesome backpack journalist curmudgeon newspaper if the news is that important, it'll find me totally blowing up on Twitter.</p>
+            <div class="d-flex mb-3" style="margin-left: -.5rem;margin-right: -.5rem;">
+                <div class="img-cont p-2">
+                    <img src="https://via.placeholder.com/140" data-lazysrc="https://source.unsplash.com/140x140/?dog" class="lazyMedia img-fluid">
+                </div><!-- end img cont -->
+                <div class="img-cont p-2">
+                    <img src="https://via.placeholder.com/140" data-lazysrc="https://source.unsplash.com/140x140/?dog" class="lazyMedia img-fluid">
+                </div><!-- end img cont -->
+                <div class="img-cont p-2">
+                    <img src="https://via.placeholder.com/140" data-lazysrc="https://source.unsplash.com/140x140/?dog" class="lazyMedia img-fluid">
+                </div><!-- end img cont -->
+                <div class="img-cont p-2">
+                    <img src="https://via.placeholder.com/140" data-lazysrc="https://source.unsplash.com/140x140/?dog" class="lazyMedia img-fluid">
+                </div><!-- end img cont -->
+                <div class="img-cont p-2">
+                    <img src="https://via.placeholder.com/140" data-lazysrc="https://source.unsplash.com/140x140/?dog" class="lazyMedia img-fluid">
+                </div><!-- end img cont -->
+            </div><!-- end image row -->
+            <p>Chartbeat fourth estate Politics & Socks page 5 praise erasers & how to avoid them plagiarism The Printing Press as an Agent of Change production of innocence Gawker meme AP Twitter topples dictators retweet aggregation, Romenesko Fuego Kindle Single Romenesko content is king right-sizing Pictures of Goats section horse-race coverage community the power of the press belongs to the person who owns one. Demand Media Robin Sloan Fuego rubber cement hackgate NPR retweet AP Foursquare Paul Steiger innovation, reality-based synergize CNN leaves it there A.J. Liebling trolls Colbert bump Facebook lede Knight News Challenge Wikipedia Patch, totally blowing up on Twitter Groupon Gawker crowdsourcing put the paper to bed hyperhyperhyperlocal Arianna the audience knows more than I do pay curtain.</p>
+        </article>
+        <article id="srcset">
+            <hr>
+            <picture class="img-fluid d-block d-md-inline-block float-md-right mb-3 ml-md-3 mt-md-3" style="max-width: 100%;">
+                <source media="(min-width: 768px)" data-lazysrcset="https://dummyimage.com/240x320/F2F3F9/aaa&text=large" class="lazyMedia">
+                <source media="(min-width: 340px)" data-lazysrcset="https://dummyimage.com/768x320/F2F3F9/aaa&text=small" class="lazyMedia">
+                <img src="https://dummyimage.com/140x140/F2F3F9/aaa&text=placeholder" data-lazysrc="https://dummyimage.com/340x100/F2F3F9/aaa&text=XS+mobile" alt="Flowers" style="max-width:100%;" class="lazyMedia">
+            </picture>
+            <h3 class="font-weight-light mt-0">Image lazy loading with srcset</h3>
+            <p>incent tweets scoop Encyclo afternoon paper The Printing Press as an Agent of Change Like button put the paper to bed, nonprofit fourth estate Dan Fleckner Instagram RSS stupid commenters, copyboy future of context content is king +1 try PR Google News. Clay Shirky semipermeable paywall fair use AP hashtag he said she said information wants to be free SEO Dan Fleckner, audience atomization overcome Walter Lippmann paidContent stream Bill Keller information overload the other longer Book Review hashtag cognitive surplus Arab spring, Jeff Jarvis prostate analog thinking he said she said serendipity Steve Jobs Colbert bump newsonomics process vs. product.</p>
+            <p>tags hyperhyperhyperlocal RT social media advertising Twitter topples dictators layoffs Journal Register totally blowing up on Twitter Does my "yes, but" look big in this corner office? totally blowing up on Twitter, Pictures of Goats section tools dead trees bloggers in their mother's basement open newsroom election-night hologram paidContent iPhone app hashtag, lede Rupert Murdoch Google+ NPR Arab spring Zite Politics & Socks page he said she said syndicated. Nick Denton Gutenberg stream Ushahidi net neutrality CPM should isn't a business model newsonomics I love the Weather & Opera section John Dewey experiment, community WSJ ProPublica Romenesko Arianna Nick Denton Knight News Challenge The Daily DocumentCloud.</p>
+        </article>
+        <article id="iframe">
+            <hr>
+            <h3 class="font-weight-light mt-0">iFrame lazy loading</h3>
+            <p>tags information overload Neil Postman should isn't a business model the notion of the public audience atomization overcome content farm link economy election-night hologram fair use Google News tablets.</p>
+            <div class="iframe-cont mb-3">
+                <iframe width="768" height="820" data-lazysrc="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&autoplay=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="lazyMedia img-fluid"></iframe>
+            </div>
+            <p>media bias dead trees stupid commenters hot news doctrine dead trees A.J. Liebling nut graf, go viral David Foster Wallace NPR the medium is the message Politics & Socks page Knight Foundation, Android lede dingbat writing advertising. Google News tools anonymity hot news doctrine shoot a photo experiment paywall Walter Lippmann 5% corruption Pulse the medium is the massage, Encyclo Arab spring tweets writing tools David Cohn #twittermakesyoustupid future of context iPhone app dead trees, election-night hologram recontextualize hyperlocal Project Thunderdome Knight News Challenge Quora Jeff Jarvis the other longer Book Review trolls.</p>
+            <p>shoot a photo rubber cement Google+ Project Thunderdome Article Skimmer Frontline shoot a video location-based circulation every dog loves food TweetDeck location-based vast wasteland, Robin Sloan Reuters Gutenberg reporting shoot a video dingbat net neutrality free as in beer Gutenberg bloggers in their mother's basement. linkbait Aron Pilhofer Tim Carmody the medium is the message link economy Reuters Jeff Jarvis prostate dying Twitter topples dictators in the slot TBD Neil Postman Nick Denton, meme Jay Rosen nut graf we will make them pay tweet layoffs hot news doctrine advertising Fuego paywall got drudged.</p>
+            <p>semipermeable Free Darko CTR West Seattle Blog get me rewrite net neutrality Clay Shirky Dan Fleckner gamification the audience knows more than I do learnings, serendipity analog thinking every dog loves food synergize privacy Free Darko Chartbeat WordPress commons-based peer production, Rupert Murdoch curation anonymity he said she said circulation data visualization digital first I saw it on Mediagazer Does my "yes, but" look big in this corner office?. Encyclo backpack journalist collaboration David Foster Wallace +1 Jeff Jarvis prostate Patch open newsroom, Jay Rosen newspaper the audience knows more than I do audience atomization overcome morgue he said she said Neil Postman TweetDeck, free as in beer Jay Rosen Arab spring explainer analog thinking content farm.</p>
+        </article>
+    </div><!-- end container -->
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+
+    function lazyMediaLoad(){
+        $.fn.isInViewport = function() {
+            var elementTop = $(this).offset().top - 150;
+            var elementBottom = elementTop + $(this).outerHeight();
+
+            var viewportTop = $(window).scrollTop();
+            var viewportBottom = viewportTop + $(window).height();
+
+            return elementBottom > viewportTop && elementTop < viewportBottom;
+        };
+
+        $('.lazyMedia').each(function() {
+            if ($(this).isInViewport() && !($(this).hasClass('lazyDone'))) {
+                let lazyImg = $(this).data('lazysrc');
+                let lazySrcSet = $(this).data('lazysrcset');
+                $(this).attr('src', lazyImg);
+                $(this).attr('srcset', lazySrcSet);
+                $(this).addClass('lazyDone');
+            }
+        });
+    }
+
+    $(window).on('resize scroll', function() {
+        lazyMediaLoad();
+    });
+
+    $(document).ready(function() {
+        lazyMediaLoad();
+    });
+
+</script>
+
+
+</body>
+</html>
