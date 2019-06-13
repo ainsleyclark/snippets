@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>SparkPost demo</title>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-light bg-light navbar-expand-lg">
+        <a class="navbar-brand" href="#">
+            <img src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            Sparkpost demo
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<section class="py-3 py-lg-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <h4>Submit this form to sparkpost</h4>
+                <div id="formWrapper">
+                    <form class="form" action="process.php" method="POST" id="myForm">
+                        <input type="hidden" name="nonce" id="nonce" value="secret">
+                        <div class="form-group">
+                            <label for="fname">Your name</label>
+                            <input type="text" class="form-control" id="fname" aria-describedby="nameHelp" placeholder="Your name" name="fname">
+                        </div>
+                        <div class="form-group">
+                            <label for="emailaddr">Email address</label>
+                            <input type="email" class="form-control" id="emailaddr" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="fname">Multiple field values example</label>
+                            <div class="row">
+                                <div class="col-12 col-md-4"><input type="text" class="form-control colourInput" id="colours-first" aria-describedby="nameHelp" placeholder="Colour 1" name="colours[]"></div><!-- end col -->
+                                <div class="col-12 col-md-4"><input type="text" class="form-control colourInput" id="colours-second" aria-describedby="nameHelp" placeholder="Colour 2" name="colours[]"></div><!-- end col -->
+                                <div class="col-12 col-md-4"><input type="text" class="form-control colourInput" id="colours-third" aria-describedby="nameHelp" placeholder="Colour 3" name="colours[]"></div><!-- end col -->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="msg">Your messagae</label>
+                            <textarea class="form-control" id="msg" rows="3" name="message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit - $.ajax() function</button>
+                    </form>
+                </div>
+            </div><!-- end col -->
+            <div class="col-12 col-lg-4">
+                <button class="btn btn-info submit" id="formSubmit">Submit form remotely - $.ajax() function</button>
+                <hr>
+                <button class="btn btn-warning submit" id="postSubmit">Submit form, target fields individually - $.post() function</button>
+                <div id="errors"></div>
+            </div><!-- end col -->
+        </div>
+    </div><!-- end container -->
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+
+    // VANILLA JS listen for form submit event
+    $("#myForm").on('submit',(function(e) {
+        e.preventDefault();    //stop form from submitting
+        let formElem = $(this);
+        let formData = $(this).serialize();
+        let formAction = $(this).attr("action");
+        let formMethod = $(this).attr("method");
+        console.log(formData);
+        $.ajax({
+            type : formMethod,
+            url : formAction,
+            data : formData,
+            beforeSend : function(){
+                $('#errors').html(''); // could do this further up on the click event,
+                console.log('Preparing to make AJAX call.');
+                console.log(formData);
+            },
+            success: function(response) {
+                response = JSON.parse(response);
+                console.log(response);
+                if (response.errors === undefined || response.errors.length == 0) {
+                    formElem.fadeOut();
+                    $('button.submit').fadeOut();
+                    formElem.parents('#formWrapper').html('<div class="alert alert-success mt-3">Form sent!</div>');
+                }
+                else {
+                    $.each(response.errors, function(iV, bV){
+                        $('#errors').append('<div class="alert alert-danger mt-3">'+bV.message+'</div>');
+                    })
+                }
+            },
+            error: function(xhr) {
+                alert("Error occured. Check console log for output.");
+                console.log(xhr.statusText + xhr.responseText);
+            },
+        });
+    }));
+
+    // Jquery listen for click event on button outside form
+    $("button#formSubmit").on('click',(function(e) {
+        $('form#myForm').submit();
+    }));
+
+</script>
+
+<script type="text/javascript">
+
+    // Send input fields individually using $.post() func
+    function sendFields(){
+
+        let fnameInput = $('input#fname').val();
+        let emailInput = $('input#emailaddr').val();
+
+        // Loop through colour input fields and build array from values.
+        var colourInputs = [];
+        $("input.colourInput").each(function() {
+            colourInputs.push($(this).val());
+        });
+
+        let messageInput = $('textarea#msg').val();
+
+        $.post('process.php', {fname: fnameInput, email: emailInput, message: messageInput, colours: colourInputs}, function(){}).done(function(response){
+            response = JSON.parse(response);
+            if (response.errors === undefined || response.errors.length == 0) {
+                $('form#myForm').fadeOut();
+                $('button.submit').fadeOut();
+                $('form#myForm').parents('#formWrapper').html('<div class="alert alert-success mt-3">Form sent! Thanks for the message '+fnameInput+'</div>');
+            }
+            else {
+                $.each(response.errors, function(iV, bV){
+                    $('#errors').append('<div class="alert alert-danger mt-3">'+bV.message+'</div>');
+                })
+            }
+        });
+    }
+
+    // Jquery listen for click event on button outside form
+    $("button#postSubmit").on('click',(function(e) {
+        sendFields()
+    }));
+</script>
+
+</body>
+</html>
