@@ -15,9 +15,9 @@ brew install webp
 ```
 
 ## Convert Images
-Copy ```convert-webp.sh``` to the directory you want conver the webp images too (for example: /wp-content/uploads).
-Open terminal, cd to the directory and run ```sh convert-webp.sh```. If done correctly, all images within that directory (recursive) will be converted to teh extension image.png.webp.
-You are able to adjust the quality of the webp images by adjusting the quality paramter in the sh script ```cwebp -q 80`` (0-100).
+Copy ```convert-webp.sh``` to the directory you want convert the webp images too (for example: /wp-content/uploads).
+Open terminal, cd to the directory and run ```sh convert-webp.sh```. If done correctly, all images within that directory (recursive) will be converted to webp with the extension of ```image.png.webp```.
+You are able to adjust the quality of the webp images by adjusting the quality paramter in the sh script ```cwebp -q 80``` (0-100).
 
 ## Configure nginx
 
@@ -27,17 +27,21 @@ You are able to adjust the quality of the webp images by adjusting the quality p
 ## Chrome/65 accept : image/webp,image/apng,image/*,*/*;q=0.8
 ## Firefox/58 accept: */*
 ## iPhone5s   accept: */*
+
 map $http_accept $img_suffix {
   "~*webp"  ".webp";
   "~*jxr"   ".jxr";
 }
+
 ## https://github.com/cdowdy/Nginx-Content-Negotiation/blob/master/nginx.conf
 map $msie $cache_control {
   "1"     "private";
 }
+
 map $msie $vary_header {
   default "Accept";
   "1"     "";
+}
 ```
 
 - Ensure that the default nginx config file is including the webp.conf you have just created. ```nano /etc/nginx/nginx.conf```. 
