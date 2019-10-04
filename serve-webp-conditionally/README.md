@@ -21,7 +21,7 @@ You are able to adjust the quality of the webp images by adjusting the quality p
 
 ## Configure nginx
 
-1. Create the file ```/etc/nginx/conf.d/webp.conf``` and paste the following contents into it, save.
+- Create the file ```/etc/nginx/conf.d/webp.conf``` and paste the following contents into it, save.
 
 ```
 ## Chrome/65 accept : image/webp,image/apng,image/*,*/*;q=0.8
@@ -40,9 +40,10 @@ map $msie $vary_header {
   "1"     "";
 ```
 
-2. Ensure that the default nginx config file is include the webp.conf you have just created. ```nano /etc/nginx/nginx.conf```. Under the http directive there should be something similar too ```include /etc/nginx/conf.d/*.conf;```
+- Ensure that the default nginx config file is including the webp.conf you have just created. ```nano /etc/nginx/nginx.conf```. 
+Under the http directive there should be something similar too ```include /etc/nginx/conf.d/*.conf;```
 
-3. Add the following to your config file under sites-available.
+- Add the following to your config file under sites-available.
 
 ```
 location ~* \.(?:jpg|jpeg|gif|png|ico|cur|webp|jxr)$ {
@@ -56,7 +57,7 @@ location ~* \.(?:jpg|jpeg|gif|png|ico|cur|webp|jxr)$ {
 }
 ```
 
-4. Reload & nginx ```sudo nginx -t && sudo service nginx reload```.
+- Reload & nginx ```sudo nginx -t && sudo service nginx reload```.
 
 ## Test
 
