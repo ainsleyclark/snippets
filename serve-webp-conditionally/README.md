@@ -61,10 +61,35 @@ location ~* \.(?:jpg|jpeg|gif|png|ico|cur|webp|jxr)$ {
 
 ## Test
 
-- Run with native curl user agent
+- Run with native curl user agent - should see jpg/png or original image being returned.
+```
 curl -I -L https://www.your-blog.com/wp-content/uploads/2018/02/image.png
+```
 
-- Run with Webp accept header.
+- Run with Webp accept header - should see webp being returned.
+```
 curl -I -L -H "accept:image/webp,image/apng,image/*,*/*;q=0.8" https://www.your-blog.com/wp-content/uploads/2018/02/image.png
+```
+
+
+## Add Cron Job
+This will run the convert-webp.sh script every day or time you see fit. Run the following from terminal.
+
+```
+crontab -e
+```
+
+The syntax, be sure to change the file path.
+
+```
+1 2 3 4 5 /var/www/your-site/wp-content/uploads/convert-webp.sh
+```
+- 1: Minute (0-59)
+- 2: Hours (0-23)
+- 3: Day (0-31)
+- 4: Month (0-12 [12 == December])
+- 5: Day of the week(0-7 [7 or 0 == sunday])
+- /path/to/command – Script or command name to schedule
+
 
 See [https://www.it-cooking.com/technology/web/nginx/conditionally-serving-webp-images-with-nginx/](https://www.it-cooking.com/technology/web/nginx/conditionally-serving-webp-images-with-nginx/) for more details.
