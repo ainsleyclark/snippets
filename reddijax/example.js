@@ -1,5 +1,5 @@
 //Require & Import
-import Reddijax from './ajax';
+import Reddijax from './reddijax';
 let ajax = new Reddijax();
 
 //Get
